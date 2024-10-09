@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "backend_ecommerce",
+=======
+  "name": "back",
+>>>>>>> 20b499c (Creacion de modulos)
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,10 +14,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.0",
     "sequelize": "^6.37.3"
+=======
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2"
+>>>>>>> 20b499c (Creacion de modulos)
   }
 }
