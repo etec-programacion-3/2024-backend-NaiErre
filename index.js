@@ -1,27 +1,22 @@
 const express = require('express');
-const mysql = require('mysql');
-const cors = require('cors');
-
+const { sequelize } = require('./models');  // Importa tu instancia de Sequelize y modelos
 const app = express();
-app.use(cors());
-app.use(express.json());
+const PORT = process.env.PORT || 3000;
 
-// Configuración de la conexión a MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'tu_usuario', // Cambia esto
-    password: 'tu_contraseña', // Cambia esto
-    database: 'ecommerce'
+app.get('/', (req, res) => {
+  res.send('Bienvenido al backend del e-commerce!');
 });
 
-db.connect((err) => {
-    if (err) {
-        console.log('Error connecting to database:', err);
-        return;
-    }
-    console.log('Connected to MySQL database');
-});
+// Sincroniza los modelos con la base de datos
+sequelize.sync({ force: false })  // Si usas { force: true }, esto borrará las tablas existentes y las volverá a crear.
+  .then(() => {
+    console.log('Tablas creadas correctamente.');
+  })
+  .catch(err => {
+    console.error('Error creando las tablas:', err);
+  });
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+// Iniciar el servidor
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
