@@ -12,6 +12,15 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const products = await productService.getProducts();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
+
 // Obtener un producto por ID
 router.get('/:productId', async (req, res) => {
   try {

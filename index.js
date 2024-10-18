@@ -1,22 +1,16 @@
-const express = require('express');
-const { sequelize } = require('./models');  // Importa tu instancia de Sequelize y modelos
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-  res.send('Bienvenido al backend del e-commerce!');
-});
+const { sequelize } = require('./models');  // Importa la instancia de Sequelize
+const app = require('./app');  // Importa tu aplicación desde app.js
 
 // Sincroniza los modelos con la base de datos
-sequelize.sync({ force: false })  // Si usas { force: true }, esto borrará las tablas existentes y las volverá a crear.
+sequelize.sync({ force: false })  // Si usas { force: true }, borrará y recreará las tablas
   .then(() => {
     console.log('Tablas creadas correctamente.');
+    // Inicia el servidor solo después de que las tablas se hayan creado
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Servidor escuchando en el puerto ${PORT}`);
+    });
   })
   .catch(err => {
     console.error('Error creando las tablas:', err);
   });
-
-// Iniciar el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
-});

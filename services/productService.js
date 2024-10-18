@@ -5,6 +5,10 @@ const createProduct = async (data) => {
   return await Product.create(data);
 };
 
+const getProducts = async () => {
+  return await Product.findAll();
+};
+
 // Obtener un producto por ID
 const getProductById = async (productId) => {
   return await Product.findByPk(productId);
@@ -22,6 +26,7 @@ const deleteProduct = async (productId) => {
 
 module.exports = {
   createProduct,
+  getProducts,
   getProductById,
   updateProduct,
   deleteProduct,
