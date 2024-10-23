@@ -54,3 +54,33 @@ Content-Type: application/json
 
 ### Eliminar un CartItem
 DELETE http://localhost:3000/api/cart-items/1
+
+
+### cart
+
+### Obtener todos los carritos
+GET http://localhost:3000/api/carts
+
+### Crear un nuevo carrito
+POST http://localhost:3000/api/carts
+Content-Type: application/json
+
+{
+  "userId": 1
+}
+
+### Obtener un carrito por ID
+GET http://localhost:3000/api/carts/:cartId
+# Reemplaza :cartId con el ID del carrito que deseas obtener
+
+### Actualizar un carrito
+PUT http://localhost:3000/api/carts/:cartId
+Content-Type: application/json
+
+{
+  "userId": 2
+}
+
+### Eliminar un carrito
+DELETE http://localhost:3000/api/carts/:cartId
+# Reemplaza :cartId con el ID del carrito que deseas eliminar

@@ -1,8 +1,8 @@
-const { Cart, CartItem, User } = require('../models');
+const { Cart, CartItem } = require('../models');
 
-// Obtener todos los CartItems
-const getAllCartItems = async () => {
-  return await CartItem.findAll(); // Esto obtiene todos los elementos de la tabla CartItem
+// Obtener todos los carritos
+const getAllCarts = async () => {
+  return await Cart.findAll(); // Asegúrate de que este método sea compatible con tus requisitos
 };
 
 // Crear un carrito
@@ -12,13 +12,12 @@ const createCart = async (userId) => {
 
 // Obtener un carrito por ID
 const getCartById = async (cartId) => {
-  return await Cart.findByPk(cartId, { include: [CartItem] });
+  return await Cart.findByPk(cartId, { include: [CartItem] }); // Esto incluirá los elementos del carrito
 };
 
-// Actualizar un carrito (agregar un CartItem)
-const addCartItem = async (cartId, productId, quantity) => {
-  const cartItem = await CartItem.create({ cartId, productId, quantity });
-  return cartItem;
+// Actualizar un carrito (puedes expandir esta funcionalidad)
+const updateCart = async (cartId, data) => {
+  return await Cart.update(data, { where: { id: cartId } });
 };
 
 // Eliminar un carrito
@@ -27,9 +26,9 @@ const deleteCart = async (cartId) => {
 };
 
 module.exports = {
+  getAllCarts,
   createCart,
   getCartById,
-  addCartItem,
+  updateCart,
   deleteCart,
-  getAllCartItems,
 };
