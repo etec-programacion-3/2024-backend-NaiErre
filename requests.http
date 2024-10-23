@@ -121,3 +121,36 @@ Content-Type: application/json
 
 DELETE http://localhost:3000/api/orders/:orderId
 # Reemplaza :orderId con el ID del pedido que deseas eliminar
+
+### OrderItem
+
+### Obtener todos los OrderItems
+GET http://localhost:3000/api/order-items
+
+### Crear un OrderItem
+POST http://localhost:3000/api/order-items
+Content-Type: application/json
+
+{
+  "orderId": 1,
+  "productId": 2,
+  "quantity": 3,
+  "price": 29.99
+}
+
+### Obtener un OrderItem por ID
+GET http://localhost:3000/api/order-items/:orderItemId
+# Reemplaza :orderItemId con el ID del OrderItem que deseas obtener
+
+### Actualizar un OrderItem
+PUT http://localhost:3000/api/order-items/:orderItemId
+Content-Type: application/json
+
+{
+  "quantity": 5,
+  "price": 24.99
+}
+
+### Eliminar un OrderItem
+DELETE http://localhost:3000/api/order-items/:orderItemId
+# Reemplaza :orderItemId con el ID del OrderItem que deseas eliminar

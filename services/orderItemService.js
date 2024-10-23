@@ -1,5 +1,10 @@
 const { OrderItem, Product } = require('../models');
 
+// Obtener todos los OrderItems
+const getAllOrderItems = async () => {
+  return await OrderItem.findAll({ include: [Product] });
+};
+
 // Crear un OrderItem
 const createOrderItem = async (orderId, productId, quantity, price) => {
   return await OrderItem.create({ orderId, productId, quantity, price });
@@ -21,6 +26,7 @@ const deleteOrderItem = async (orderItemId) => {
 };
 
 module.exports = {
+  getAllOrderItems, // Agregar esta línea
   createOrderItem,
   getOrderItemById,
   updateOrderItem,

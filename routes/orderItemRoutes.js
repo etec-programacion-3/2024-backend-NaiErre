@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const orderItemService = require('../services/orderItemService');
 
+// Obtener todos los OrderItems
+router.get('/', async (req, res) => {
+  try {
+    const orderItems = await orderItemService.getAllOrderItems(); // Asegúrate de implementar este método en el servicio
+    res.status(200).json(orderItems);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Crear un OrderItem
 router.post('/', async (req, res) => {
   try {
