@@ -84,3 +84,40 @@ Content-Type: application/json
 ### Eliminar un carrito
 DELETE http://localhost:3000/api/carts/:cartId
 # Reemplaza :cartId con el ID del carrito que deseas eliminar
+
+
+### orders
+
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "totalPrice": 100.50,
+  "status": "pending"
+}
+
+###
+
+GET http://localhost:3000/api/orders
+
+###
+
+GET http://localhost:3000/api/orders/:orderId
+# Reemplaza :orderId con el ID del pedido que deseas obtener
+
+###
+
+PUT http://localhost:3000/api/orders/:orderId
+Content-Type: application/json
+
+{
+  "status": "completed"
+}
+
+# Reemplaza :orderId con el ID del pedido que deseas actualizar
+
+###
+
+DELETE http://localhost:3000/api/orders/:orderId
+# Reemplaza :orderId con el ID del pedido que deseas eliminar

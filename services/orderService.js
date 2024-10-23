@@ -5,6 +5,11 @@ const createOrder = async (userId, totalPrice, status) => {
   return await Order.create({ userId, totalPrice, status });
 };
 
+// Obtener todos los pedidos
+const getAllOrders = async () => {
+  return await Order.findAll({ include: [OrderItem] }); // Incluye OrderItem si necesitas esos datos
+};
+
 // Obtener un pedido por ID
 const getOrderById = async (orderId) => {
   return await Order.findByPk(orderId, { include: [OrderItem] });
@@ -22,6 +27,7 @@ const deleteOrder = async (orderId) => {
 
 module.exports = {
   createOrder,
+  getAllOrders,  // Asegúrate de que esté exportado aquí
   getOrderById,
   updateOrderStatus,
   deleteOrder,

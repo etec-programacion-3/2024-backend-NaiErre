@@ -13,6 +13,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Obtener todos los pedidos
+router.get('/', async (req, res) => {
+  try {
+    const orders = await orderService.getAllOrders(); // Asegúrate de que este método esté implementado
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Obtener un pedido por ID
 router.get('/:orderId', async (req, res) => {
   try {
