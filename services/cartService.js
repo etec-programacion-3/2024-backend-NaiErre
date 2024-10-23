@@ -1,5 +1,10 @@
 const { Cart, CartItem, User } = require('../models');
 
+// Obtener todos los CartItems
+const getAllCartItems = async () => {
+  return await CartItem.findAll(); // Esto obtiene todos los elementos de la tabla CartItem
+};
+
 // Crear un carrito
 const createCart = async (userId) => {
   return await Cart.create({ userId });
@@ -26,4 +31,5 @@ module.exports = {
   getCartById,
   addCartItem,
   deleteCart,
+  getAllCartItems,
 };

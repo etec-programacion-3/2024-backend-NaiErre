@@ -5,12 +5,17 @@ const createCartItem = async (cartId, productId, quantity) => {
   return await CartItem.create({ cartId, productId, quantity });
 };
 
+// Obtener todos los CartItems
+const getAllCartItems = async () => {
+  return await CartItem.findAll({ include: [Product] }); // Obtiene todos los elementos de la tabla CartItem
+};
+
 // Obtener un CartItem por ID
 const getCartItemById = async (cartItemId) => {
   return await CartItem.findByPk(cartItemId, { include: [Product] });
 };
 
-// Actualizar la cantidad de un CartItem
+// Actualizar un CartItem
 const updateCartItem = async (cartItemId, quantity) => {
   return await CartItem.update({ quantity }, { where: { id: cartItemId } });
 };
@@ -22,6 +27,7 @@ const deleteCartItem = async (cartItemId) => {
 
 module.exports = {
   createCartItem,
+  getAllCartItems, // Asegúrate de que este método esté aquí
   getCartItemById,
   updateCartItem,
   deleteCartItem,

@@ -26,3 +26,31 @@ Content-Type: application/json
 
 ### Eliminar un producto
 DELETE http://localhost:3000/api/products/1
+
+### Carrito
+### Crear un CartItem
+POST http://localhost:3000/api/cart-items
+Content-Type: application/json
+
+{
+  "cartId": 1,
+  "productId": 2,
+  "quantity": 3
+}
+
+### Obtener todos los CartItems
+GET http://localhost:3000/api/cart-items
+
+### Obtener un CartItem por ID
+GET http://localhost:3000/api/cart-items/1
+
+### Actualizar un CartItem
+PUT http://localhost:3000/api/cart-items/1
+Content-Type: application/json
+
+{
+  "quantity": 5
+}
+
+### Eliminar un CartItem
+DELETE http://localhost:3000/api/cart-items/1

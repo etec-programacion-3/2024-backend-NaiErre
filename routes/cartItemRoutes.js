@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const cartItemService = require('../services/cartItemService');
 
+// Obtener todos los CartItems
+router.get('/', async (req, res) => {
+  try {
+    const cartItems = await cartItemService.getAllCartItems(); // Asegúrate de implementar este método en el servicio
+    res.status(200).json(cartItems);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Crear un CartItem
 router.post('/', async (req, res) => {
   try {
