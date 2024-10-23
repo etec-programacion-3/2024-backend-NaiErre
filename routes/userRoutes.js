@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const userService = require('../services/userService');
 
+// Obtener todos los usuarios
+router.get('/', async (req, res) => {
+  try {
+    const users = await userService.getAllUsers(); // Asegúrate de implementar este método en el servicio
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Crear un usuario
 router.post('/', async (req, res) => {
   try {

@@ -154,3 +154,35 @@ Content-Type: application/json
 ### Eliminar un OrderItem
 DELETE http://localhost:3000/api/order-items/:orderItemId
 # Reemplaza :orderItemId con el ID del OrderItem que deseas eliminar
+
+### User
+
+### Obtener todos los usuarios
+GET http://localhost:3000/api/users
+
+### Crear un usuario
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "email": "juan.perez@example.com",
+  "password": "123456"
+}
+
+### Obtener un usuario por ID
+GET http://localhost:3000/api/users/:userId
+# Reemplaza :userId con el ID del usuario que deseas obtener
+
+### Actualizar un usuario
+PUT http://localhost:3000/api/users/:userId
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez Actualizado",
+  "email": "juan.perez.nuevo@example.com"
+}
+
+### Eliminar un usuario
+DELETE http://localhost:3000/api/users/:userId
+# Reemplaza :userId con el ID del usuario que deseas eliminar

@@ -1,5 +1,10 @@
 const { User, Cart, Order } = require('../models');
 
+// Obtener todos los usuarios
+const getAllUsers = async () => {
+  return await User.findAll({ include: [Cart, Order] }); // Asegúrate de incluir los modelos necesarios
+};
+
 // Crear un usuario
 const createUser = async (data) => {
   return await User.create(data);
@@ -21,6 +26,7 @@ const deleteUser = async (userId) => {
 };
 
 module.exports = {
+  getAllUsers, // Agregar esta línea
   createUser,
   getUserById,
   updateUser,
