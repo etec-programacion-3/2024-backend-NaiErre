@@ -186,3 +186,6 @@ Content-Type: application/json
 ### Eliminar un usuario
 DELETE http://localhost:3000/api/users/:userId
 # Reemplaza :userId con el ID del usuario que deseas eliminar
+
+
+

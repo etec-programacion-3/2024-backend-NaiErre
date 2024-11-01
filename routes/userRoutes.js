@@ -1,19 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const userService = require('../services/userService');
+const userService = require("../services/userService");
 
 // Obtener todos los usuarios
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const users = await userService.getAllUsers(); // Asegúrate de implementar este método en el servicio
+    const users = await userService.getAllUsers();
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// Crear un usuario
-router.post('/', async (req, res) => {
+// Crear un nuevo usuario
+router.post("/", async (req, res) => {
   try {
     const user = await userService.createUser(req.body);
     res.status(201).json(user);
@@ -22,31 +22,63 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Ruta de Login
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await userService.getUserByEmail(email);
+
+    // Verifica si el usuario existe y si la contraseña coincide
+    if (!user || user.password !== password) {
+      return res
+        .status(401)
+        .json({ error: "Usuario o contraseña incorrectos" });
+    }
+
+    // Si las credenciales son correctas, responde con los datos del usuario
+    res.status(200).json({ message: "Login exitoso", user });
+  } catch (error) {
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+});
+
 // Obtener un usuario por ID
-router.get('/:userId', async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
     const user = await userService.getUserById(req.params.userId);
-    res.status(200).json(user);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ error: "Usuario no encontrado" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
 // Actualizar un usuario
-router.put('/:userId', async (req, res) => {
+router.put("/:userId", async (req, res) => {
   try {
     const user = await userService.updateUser(req.params.userId, req.body);
-    res.status(200).json(user);
+    if (user[0] === 1) {
+      res.status(200).json({ message: "Usuario actualizado correctamente" });
+    } else {
+      res.status(404).json({ error: "Usuario no encontrado" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
 // Eliminar un usuario
-router.delete('/:userId', async (req, res) => {
+router.delete("/:userId", async (req, res) => {
   try {
-    await userService.deleteUser(req.params.userId);
-    res.status(204).send();
+    const result = await userService.deleteUser(req.params.userId);
+    if (result) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({ error: "Usuario no encontrado" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

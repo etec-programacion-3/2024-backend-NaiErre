@@ -1,18 +1,23 @@
-const { User, Cart, Order } = require('../models');
+const { User, Cart, Order } = require("../models");
 
-// Obtener todos los usuarios
+// Obtener todos los usuarios, incluyendo sus carritos y pedidos
 const getAllUsers = async () => {
-  return await User.findAll({ include: [Cart, Order] }); // Asegúrate de incluir los modelos necesarios
+  return await User.findAll({ include: [Cart, Order] });
 };
 
-// Crear un usuario
+// Crear un nuevo usuario
 const createUser = async (data) => {
   return await User.create(data);
 };
 
-// Obtener un usuario por ID
+// Obtener un usuario por ID, incluyendo sus carritos y pedidos
 const getUserById = async (userId) => {
   return await User.findByPk(userId, { include: [Cart, Order] });
+};
+
+// Obtener un usuario por email (para login)
+const getUserByEmail = async (email) => {
+  return await User.findOne({ where: { email } });
 };
 
 // Actualizar un usuario
@@ -26,9 +31,10 @@ const deleteUser = async (userId) => {
 };
 
 module.exports = {
-  getAllUsers, // Agregar esta línea
+  getAllUsers,
   createUser,
   getUserById,
+  getUserByEmail, // Exporta la función para obtener usuario por email
   updateUser,
   deleteUser,
 };
