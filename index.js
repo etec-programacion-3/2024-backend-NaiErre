@@ -4,6 +4,8 @@ const { sequelize } = require("./models"); // Importa la instancia de Sequelize 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+require("dotenv").config();
+
 // Configuración de CORS para permitir solicitudes desde el frontend
 app.use(
   cors({
