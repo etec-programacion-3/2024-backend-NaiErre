@@ -16,10 +16,8 @@ app.use(
   })
 );
 
-// Permite las solicitudes preflight (OPTIONS) para todos los endpoints
 app.options("*", cors());
 
-// Middleware para parsear JSON
 app.use(express.json());
 
 // Importa las rutas

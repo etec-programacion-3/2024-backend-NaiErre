@@ -1,6 +1,5 @@
-const { CartItem, Product } = require('../models');
+const { CartItem, Product } = require("../models");
 
-// Crear un CartItem
 const createCartItem = async (cartId, productId, quantity) => {
   return await CartItem.create({ cartId, productId, quantity });
 };
@@ -24,6 +23,8 @@ const updateCartItem = async (cartItemId, quantity) => {
 const deleteCartItem = async (cartItemId) => {
   return await CartItem.destroy({ where: { id: cartItemId } });
 };
+
+// En cartItemService.js
 
 module.exports = {
   createCartItem,
