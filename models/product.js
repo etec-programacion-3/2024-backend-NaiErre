@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       size: DataTypes.FLOAT,
       color: DataTypes.STRING,
       description: DataTypes.STRING,
-      imageUrl: DataTypes.STRING,
       stock: DataTypes.INTEGER,
     },
     {
