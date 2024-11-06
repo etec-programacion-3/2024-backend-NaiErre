@@ -9,7 +9,7 @@ Content-Type: application/json
   "name": "Producto de prueba",
   "price": 99.99,
   "description": "Descripción del producto de prueba",
-  "ImageUrl": "./productimages/zapatillas1"
+  "imageUrl": "http://localhost:3000/productimages/zapatillas1.jpg"
 }
 
 ### Obtener un producto por ID

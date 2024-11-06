@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    role: DataTypes.ENUM('admin', 'buyer'), // Role puede ser 'admin' o 'buyer'
+    admin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false // Por defecto, admin será false
+    },
     profilePicture: DataTypes.STRING // Nueva columna para la foto de perfil
   }, {
     sequelize,
