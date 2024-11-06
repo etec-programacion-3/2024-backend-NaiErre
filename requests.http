@@ -8,7 +8,8 @@ Content-Type: application/json
 {
   "name": "Producto de prueba",
   "price": 99.99,
-  "description": "Descripción del producto de prueba"
+  "description": "Descripción del producto de prueba",
+  "ImageUrl": "./productimages/zapatillas1"
 }
 
 ### Obtener un producto por ID

@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const { sequelize } = require("./models"); // Importa la instancia de Sequelize desde tu configuración de modelos
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,6 +36,7 @@ app.use("/api/carts", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/order-items", orderItemRoutes);
 app.use("/api/cart-items", cartItemRoutes);
+app.use("/productimages", express.static(path.join(__dirname, "productimages")));
 
 // Sincroniza Sequelize y luego inicia el servidor
 sequelize
